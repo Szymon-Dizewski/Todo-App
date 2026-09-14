@@ -18,6 +18,7 @@ hr {
   padding-left: 10px;
   color: black;
   width: 70%;
+  font-size: medium;
 }
 
 .todo-add-button {
@@ -45,6 +46,7 @@ hr {
   margin-left: 20px;
   margin-right: 20px;
   padding: 20px;
+  padding-top: 10px;
 }
 
 .todo-item-container {
@@ -74,4 +76,11 @@ hr {
   margin: 0px;
   margin-bottom: 5px;
   margin-top: 5px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  user-select: none;
 }

@@ -62,6 +62,7 @@ function TodoItem({ task, taskDone, id, onToggle }) {
           onChange={() => onToggle(id)}
           type="checkbox"
           checked={taskDone}
+          className="checkbox"
         />
         <li className={taskDone ? "todo-item todo-item-done" : "todo-item"}>
           {task}
