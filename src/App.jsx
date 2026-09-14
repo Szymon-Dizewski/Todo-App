@@ -1,6 +1,10 @@
 import { useState } from "react"
 import "./App.css"
 import { useRef } from "react"
+import { createContext } from "react"
+import { useContext } from "react"
+
+const TodoContext = createContext()
 
 function TodoInput({ todoList, setTodoList }) {
   const [textInput, setTextInput] = useState("")
@@ -44,9 +48,22 @@ function TodoInput({ todoList, setTodoList }) {
 }
 
 function TodoItem({ task, taskDone, id }) {
+  const { todoList, setTodoList } = useContext(TodoContext)
+  function toggleTask() {
+    setTodoList(
+      todoList.map((item) =>
+        item.id === id ? { ...item, taskDone: !item.taskDone } : item
+      )
+    )
+  }
   return (
     <>
-      <li className="todo-item">{task}</li>
+      <div className="todo-item-container">
+        <input onChange={toggleTask} type="checkbox" checked={taskDone} />
+        <li className={taskDone ? "todo-item todo-item-done" : "todo-item"}>
+          {task}
+        </li>
+      </div>
       <hr />
     </>
   )
@@ -60,6 +77,7 @@ function TodoList({ todoList }) {
           <TodoItem
             task={todoItem.task}
             taskDone={todoItem.taskDone}
+            id={todoItem.id}
             key={todoItem.id}
           />
         )
@@ -70,13 +88,15 @@ function TodoList({ todoList }) {
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { task: "test", taskDone: false, id: crypto.randomUUID },
+    { task: "test", taskDone: true, id: crypto.randomUUID() },
   ])
 
   return (
     <>
-      <TodoInput todoList={todoList} setTodoList={setTodoList} />
-      <TodoList todoList={todoList} />
+      <TodoContext value={{ todoList, setTodoList }}>
+        <TodoInput todoList={todoList} setTodoList={setTodoList} />
+        <TodoList todoList={todoList} />
+      </TodoContext>
     </>
   )
 }

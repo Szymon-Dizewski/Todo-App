@@ -47,6 +47,10 @@ hr {
   padding: 20px;
 }
 
+.todo-item-container {
+  display: flex;
+}
+
 .todo-item {
   text-align: left;
   color: white;
@@ -56,6 +60,11 @@ hr {
   width: 100%;
   box-sizing: border-box;
   overflow-wrap: anywhere;
+}
+
+.todo-item-done {
+  text-decoration: line-through;
+  color: #bbb;
 }
 
 hr {
