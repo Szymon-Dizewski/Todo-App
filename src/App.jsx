@@ -105,9 +105,7 @@ function DeleteButton({ deleteTodo }) {
 }
 
 function App() {
-  const { todoList, addTodo, toggleTodo, deleteTodo } = useTodos([
-    { task: "test", taskDone: true, id: crypto.randomUUID() },
-  ])
+  const { todoList, addTodo, toggleTodo, deleteTodo } = useTodos([])
 
   return (
     <>
