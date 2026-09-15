@@ -1,4 +1,5 @@
 import { useState, useRef } from "react"
+import TrashIcon from "./assets/trash_icon.png"
 import "./App.css"
 
 // Keep list editing in one place add/delete
@@ -13,6 +14,10 @@ function useTodos(initialTodos = []) {
     ])
   }
 
+  function deleteTodo() {
+    setTodoList(todoList.filter((item) => !item.taskDone))
+  }
+
   function toggleTodo(id) {
     setTodoList(
       todoList.map((item) =>
@@ -21,7 +26,7 @@ function useTodos(initialTodos = []) {
     )
   }
 
-  return { todoList, addTodo, toggleTodo }
+  return { todoList, addTodo, toggleTodo, deleteTodo }
 }
 
 function TodoInput({ addTodo }) {
@@ -89,8 +94,18 @@ function TodoList({ todoList, onToggle }) {
   )
 }
 
+function DeleteButton({ deleteTodo }) {
+  return (
+    <>
+      <button onClick={deleteTodo} className="delete-button">
+        <img src={TrashIcon} />
+      </button>
+    </>
+  )
+}
+
 function App() {
-  const { todoList, addTodo, toggleTodo } = useTodos([
+  const { todoList, addTodo, toggleTodo, deleteTodo } = useTodos([
     { task: "test", taskDone: true, id: crypto.randomUUID() },
   ])
 
@@ -98,6 +113,7 @@ function App() {
     <>
       <TodoInput addTodo={addTodo} />
       <TodoList todoList={todoList} onToggle={toggleTodo} />
+      <DeleteButton deleteTodo={deleteTodo} />
     </>
   )
 }
