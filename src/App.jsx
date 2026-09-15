@@ -112,8 +112,10 @@ function App() {
   return (
     <>
       <TodoInput addTodo={addTodo} />
-      <TodoList todoList={todoList} onToggle={toggleTodo} />
-      <DeleteButton deleteTodo={deleteTodo} />
+      <div className="todo-list-wrapper">
+        <TodoList todoList={todoList} onToggle={toggleTodo} />
+        <DeleteButton deleteTodo={deleteTodo} />
+      </div>
     </>
   )
 }

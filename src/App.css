@@ -100,3 +100,6 @@ hr {
   justify-content: center;
   cursor: pointer;
 }
+.todo-list-wrapper {
+  position: relative;
+}
